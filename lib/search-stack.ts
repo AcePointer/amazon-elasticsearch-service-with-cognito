@@ -95,9 +95,12 @@ export class SearchStack extends Stack {
     });
 
     const esDomain = new CfnDomain(this, "searchDomain", {
+      vpcOptions: {
+        subnetIds: ["subnet-08442aa646f92df3d"]
+      },
       elasticsearchClusterConfig: { instanceType: "t3.small.elasticsearch" },
       ebsOptions: { volumeSize: 10, ebsEnabled: true },
-      elasticsearchVersion: "7.9",
+      elasticsearchVersion: "7.10",
       domainName: applicationPrefix,
       nodeToNodeEncryptionOptions: { enabled: true },
       encryptionAtRestOptions: { enabled: true },
